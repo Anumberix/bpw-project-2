@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private BridgeSpot currentSpot;
 
-    [SerializeField] private GameObject solidBridgePrefab;
-
     private void Awake()
     {
         if (Instance != null)
@@ -30,24 +28,18 @@ public class GameManager : MonoBehaviour
     {
         if (currentSpot != null)
         {
-            currentSpot.isSelected = false;
-            currentSpot.setIndicator(false);
+            currentSpot.IsSelected = false;
         }
 
-        spot.isSelected = true;
-        spot.setIndicator(true);
+        spot.IsSelected = true;
 
         currentSpot = spot;
     }
 
-    public void PlaceBridge()
+    public void PlaceBridge(int bridgeType)
     {
-        if (currentSpot.bridgePlaced == false)
-        {
-            Instantiate(solidBridgePrefab, currentSpot.gameObject.transform);
-            currentSpot.indicator.SetActive(false);
-            currentSpot.areaIndicator.SetActive(false);
-            currentSpot.bridgePlaced = true;
-        }
+        currentSpot.ActiveBridge = currentSpot.bridgeTypes[bridgeType];
+        currentSpot.IsSelected = false;
+        currentSpot = null;
     }
 }

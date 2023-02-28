@@ -4,26 +4,46 @@ using UnityEngine;
 
 public class BridgeSpot : MonoBehaviour
 {
-    [SerializeField] public bool isSelected = false;
-    [SerializeField] public bool bridgePlaced = false;
     [SerializeField] public GameObject indicator;
-    [SerializeField] public GameObject areaIndicator;
-
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject activeBridge;
+    public GameObject ActiveBridge
     {
-        
+        get { return activeBridge; }
+        set
+        {
+
+            activeBridge.SetActive(false);
+
+
+            value.SetActive(true);
+            activeBridge = value;
+        }
+    }
+    public GameObject[] bridgeTypes;
+
+    [SerializeField] private bool isSelected = false;
+    [SerializeField]
+    public bool IsSelected
+    {
+        get { return isSelected; }
+        set
+        {
+            indicator.SetActive(value);
+
+            isSelected = value;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    void Awake()
     {
-        
+        activeBridge = bridgeTypes[0];
     }
 
     private void OnMouseDown()
     {
         GameManager.Instance.SelectBridgeSpot(this);
+        Debug.Log("Clicked!");
     }
 
     public void setIndicator(bool status)
