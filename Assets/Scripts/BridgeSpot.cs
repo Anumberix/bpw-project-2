@@ -11,9 +11,15 @@ public class BridgeSpot : MonoBehaviour
         get { return activeBridge; }
         set
         {
-
             activeBridge.SetActive(false);
 
+            for (int i = 0; i < bridgeTypes.Length; i++)
+            {
+                if (activeBridge == bridgeTypes[i])
+                {
+                    GameManager.Instance.updateBridgeStock(i, 1);
+                }
+            }
 
             value.SetActive(true);
             activeBridge = value;
