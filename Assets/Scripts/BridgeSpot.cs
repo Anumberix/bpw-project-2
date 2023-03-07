@@ -17,7 +17,7 @@ public class BridgeSpot : MonoBehaviour
             {
                 if (activeBridge == bridgeTypes[i])
                 {
-                    GameManager.Instance.updateBridgeStock(i, 1);
+                    GameManager.Instance.UpdateBridgeStock(i, 1);
                 }
             }
 
@@ -28,8 +28,7 @@ public class BridgeSpot : MonoBehaviour
     public GameObject[] bridgeTypes;
 
     [SerializeField] private bool isSelected = false;
-    [SerializeField]
-    public bool IsSelected
+    [SerializeField] public bool IsSelected
     {
         get { return isSelected; }
         set
