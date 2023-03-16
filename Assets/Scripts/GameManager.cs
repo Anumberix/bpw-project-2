@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            agentShip.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
+            agentPlayer.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
         }
         Debug.Log(agentPlayer.pathStatus);
     }
