@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private BridgeSpot currentSpot;
 
-    public NavMeshAgent agent;
-    public NavMeshSurface Surface2D;
+    public NavMeshAgent agentPlayer;
+    public NavMeshAgent agentShip;
+    public NavMeshSurface surfacePlayer;
+    public NavMeshSurface surfaceShip;
 
     private Vector3 target;
 
@@ -36,19 +38,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        target = agent.gameObject.transform.position;
+        agentPlayer.updateRotation = false;
+        agentPlayer.updateUpAxis = false;
+        agentShip.updateRotation = false;
+        agentShip.updateUpAxis = false;
+        surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
+        surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
+            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            agentShip.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
         }
-
-        agent.SetDestination(new Vector3(target.x, target.y, agent.gameObject.transform.position.z));
+        Debug.Log(agentPlayer.pathStatus);
     }
 
     public void SelectBridgeSpot(BridgeSpot spot)
@@ -73,7 +78,8 @@ public class GameManager : MonoBehaviour
                 currentSpot.ActiveBridge = currentSpot.bridgeTypes[bridgeType];
                 currentSpot.IsSelected = false;
                 currentSpot = null;
-                Surface2D.UpdateNavMesh(Surface2D.navMeshData);
+                surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
+                surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
                 Debug.Log("yUP");
             }
             else

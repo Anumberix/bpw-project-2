@@ -530,8 +530,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ca1b0e163625a4c9a6adc0a118c910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 1878165051}
-  Surface2D: {fileID: 1810655918}
+  agentPlayer: {fileID: 1878165051}
+  agentShip: {fileID: 783695199}
+  surfacePlayer: {fileID: 1810655918}
+  surfaceShip: {fileID: 1764828988}
   bridgeStockText: {fileID: 2112612430}
   bridgeStock: 000000000100000001000000
 --- !u!4 &695999775
@@ -1299,7 +1301,7 @@ GameObject:
   - component: {fileID: 1764828988}
   - component: {fileID: 1764828987}
   m_Layer: 0
-  m_Name: NavMesh Sea
+  m_Name: NavMesh Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1358,7 +1360,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764828986}
-  m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.70723015}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1513,7 +1515,7 @@ GameObject:
   - component: {fileID: 1810655918}
   - component: {fileID: 1810655917}
   m_Layer: 0
-  m_Name: NavMesh
+  m_Name: NavMesh Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1526,7 +1528,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810655915}
-  m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.70723015}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
