@@ -362,6 +362,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104020181}
   m_CullTransparentMesh: 1
+--- !u!1 &250053609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 250053611}
+  - component: {fileID: 250053610}
+  m_Layer: 0
+  m_Name: Level Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &250053610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250053609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b14635e83712344a46b651d7009ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentPlayer: {fileID: 1878165051}
+  agentShip: {fileID: 783695197}
+  surfacePlayer: {fileID: 1810655918}
+  surfaceShip: {fileID: 1764828988}
+  bridgeStock: 000000000300000003000000
+--- !u!4 &250053611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250053609}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.389256, y: 1.2152082, z: -1.0576185}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &266818952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -649,12 +698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ca1b0e163625a4c9a6adc0a118c910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentPlayer: {fileID: 1878165051}
-  agentShip: {fileID: 783695197}
-  surfacePlayer: {fileID: 1810655918}
-  surfaceShip: {fileID: 1764828988}
+  levelManager: {fileID: 0}
   bridgeStockText: {fileID: 2112612430}
-  bridgeStock: 000000000300000003000000
 --- !u!4 &695999775
 Transform:
   m_ObjectHideFlags: 0
@@ -2554,6 +2599,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6119567527801859559, guid: 00594d23a1a633b4abd28e5dc15acc9a, type: 3}
       propertyPath: m_Name
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 6119567527801859559, guid: 00594d23a1a633b4abd28e5dc15acc9a, type: 3}
+      propertyPath: m_TagString
       value: Character
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -10,17 +10,18 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private BridgeSpot currentSpot;
+    public LevelManager levelManager;
 
-    public NavMeshAgent agentPlayer;
-    public NavMeshAgent agentShip;
-    public NavMeshSurface surfacePlayer;
-    public NavMeshSurface surfaceShip;
+    //public NavMeshAgent agentPlayer;
+    //public NavMeshAgent agentShip;
+    //public NavMeshSurface surfacePlayer;
+    //public NavMeshSurface surfaceShip;
 
-    private Vector3 target;
+    //private Vector3 target;
 
     public TextMeshProUGUI bridgeStockText;
 
-    public int[] bridgeStock;
+    //public int[] bridgeStock;
 
     private void Awake()
     {
@@ -32,28 +33,27 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        bridgeStockText.text = "Solid bridges: " + bridgeStock[1] + "\nWeak bridges: " + bridgeStock[2];
     }
 
     private void Start()
     {
-        agentPlayer.updateRotation = false;
-        agentPlayer.updateUpAxis = false;
-        agentShip.updateRotation = false;
-        agentShip.updateUpAxis = false;
-        surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
-        surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
+        //agentPlayer.updateRotation = false;
+        //agentPlayer.updateUpAxis = false;
+        //agentShip.updateRotation = false;
+        //agentShip.updateUpAxis = false;
+        //surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
+        //surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
+        UpdateBridgeStock();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            agentPlayer.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
-        }
-        Debug.Log(agentPlayer.pathStatus);
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //    agentPlayer.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
+        //}
+        //Debug.Log(agentPlayer.pathStatus);
     }
 
     public void SelectBridgeSpot(BridgeSpot spot)
@@ -72,14 +72,15 @@ public class GameManager : MonoBehaviour
     {
         if (currentSpot != null)
         {
-            if (bridgeStock[bridgeType] > 0)
+            if (levelManager.bridgeStock[bridgeType] > 0)
             {
                 UpdateBridgeStock(bridgeType, -1);
                 currentSpot.ActiveBridge = currentSpot.bridgeTypes[bridgeType];
                 currentSpot.IsSelected = false;
                 currentSpot = null;
-                surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
-                surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
+                levelManager.UpdateNavMesh();
+                //surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
+                //surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
                 Debug.Log("yUP");
             }
             else
@@ -96,7 +97,12 @@ public class GameManager : MonoBehaviour
 
     public void UpdateBridgeStock(int index, int change)
     {
-        bridgeStock[index] += change;
-        bridgeStockText.text = "Solid bridges: " + bridgeStock[1] + "\nWeak bridges: " + bridgeStock[2];
+        levelManager.bridgeStock[index] += change;
+        bridgeStockText.text = "Solid bridges: " + levelManager.bridgeStock[1] + "\nWeak bridges: " + levelManager.bridgeStock[2];
+    }
+
+    public void UpdateBridgeStock()
+    {
+    bridgeStockText.text = "Solid bridges: " + levelManager.bridgeStock[1] + "\nWeak bridges: " + levelManager.bridgeStock[2];
     }
 }
