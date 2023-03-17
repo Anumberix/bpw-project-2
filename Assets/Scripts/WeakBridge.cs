@@ -21,6 +21,7 @@ public class WeakBridge : MonoBehaviour
         if (collision.gameObject.CompareTag("Character"))
         {
             gameObject.SetActive(false);
+            Debug.Log("aaaaaaaaaaaa");
         }
     }
 }
