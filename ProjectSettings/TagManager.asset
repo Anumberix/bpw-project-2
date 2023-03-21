@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bridge Spot
   - Character
+  - Ship
   layers:
   - Default
   - TransparentFX

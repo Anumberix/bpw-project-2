@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeakBridge : MonoBehaviour
+public class Destination : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,12 +16,16 @@ public class WeakBridge : MonoBehaviour
         
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Character"))
         {
-            gameObject.SetActive(false);
-            GameManager.Instance.levelManager.UpdateNavMesh(); // Update Nav Mesh after bridge is gone
+            GameManager.Instance.StartShipPath();
+        }
+
+        if (collision.gameObject.CompareTag("Ship"))
+        {
+            GameManager.Instance.CompleteLevel();
         }
     }
 }

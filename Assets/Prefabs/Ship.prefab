@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 5866433933141771693}
   - component: {fileID: 5866433933141771694}
   - component: {fileID: 7159449781438484447}
+  - component: {fileID: 722816567095771695}
+  - component: {fileID: 4000613045808659372}
   m_Layer: 0
   m_Name: Ship
-  m_TagString: Untagged
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,3 +109,40 @@ NavMeshAgent:
   m_BaseOffset: 0.71133333
   m_WalkableMask: 8
   m_ObstacleAvoidanceType: 4
+--- !u!58 &722816567095771695
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866433933141771695}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.21133333}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &4000613045808659372
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866433933141771695}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

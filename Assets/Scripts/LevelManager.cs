@@ -11,7 +11,9 @@ public class LevelManager : MonoBehaviour
     public NavMeshSurface surfacePlayer;
     public NavMeshSurface surfaceShip;
 
-    Vector3 target;
+    public Transform goal;
+
+    //Vector3 target;
 
     public int[] bridgeStock;
 
@@ -30,12 +32,12 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            agentPlayer.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
-        }
-        Debug.Log(agentPlayer.pathStatus);
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //    agentPlayer.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
+        //}
+        //Debug.Log(agentPlayer.pathStatus);
     }
 
     public void UpdateNavMesh()

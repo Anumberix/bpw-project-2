@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -80,8 +79,7 @@ public class GameManager : MonoBehaviour
                 currentSpot = null;
                 levelManager.UpdateNavMesh();
                 //surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
-                //surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
-                Debug.Log("yUP");
+                //surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);                
             }
             else
             {
@@ -104,5 +102,44 @@ public class GameManager : MonoBehaviour
     public void UpdateBridgeStock()
     {
     bridgeStockText.text = "Solid bridges: " + levelManager.bridgeStock[1] + "\nWeak bridges: " + levelManager.bridgeStock[2];
+    }
+
+    public void StartCharacterPath()
+    {
+        NavMeshPath path = new NavMeshPath();
+        //Vector3 target = new Vector3(levelManager.goal.position.x, levelManager.goal.position.y, levelManager.agentPlayer.gameObject.transform.position.z);
+        levelManager.agentPlayer.CalculatePath(levelManager.goal.position, path);
+        if (path.status == NavMeshPathStatus.PathPartial)
+        {
+            FailLevel();
+        }
+        levelManager.agentPlayer.SetPath(path);
+        //Debug.Log(levelManager.agentPlayer.pathStatus);
+        //if (levelManager.agentPlayer.pathStatus == NavMeshPathStatus.PathPartial)
+        //{
+        //    Debug.Log("Character cannot reach destination");
+        //}
+    }
+
+    public void StartShipPath()
+    {
+        Debug.Log("Start Ship Path");
+        NavMeshPath path = new NavMeshPath();
+        levelManager.agentShip.CalculatePath(levelManager.goal.position, path);
+        if (path.status == NavMeshPathStatus.PathPartial)
+        {
+            FailLevel();
+        }
+        levelManager.agentShip.SetPath(path);
+    }
+
+    public void FailLevel()
+    {
+        Debug.Log("Failed!");
+    }
+
+    public void CompleteLevel()
+    {
+        Debug.Log("Level Complete!");
     }
 }
