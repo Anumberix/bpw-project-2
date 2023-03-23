@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using TMPro;
@@ -11,6 +12,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private BridgeSpot currentSpot;
     public LevelManager levelManager;
+
+    public GameObject failureScreen;
+    public GameObject completeScreen;
+    public GameObject canvas;
 
     //public NavMeshAgent agentPlayer;
     //public NavMeshAgent agentShip;
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -43,6 +49,7 @@ public class GameManager : MonoBehaviour
         //surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
         //surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
         UpdateBridgeStock();
+        DontDestroyOnLoad(canvas);
     }
 
     private void Update()
@@ -135,11 +142,21 @@ public class GameManager : MonoBehaviour
 
     public void FailLevel()
     {
-        Debug.Log("Failed!");
+        failureScreen.SetActive(true);
     }
 
     public void CompleteLevel()
     {
-        Debug.Log("Level Complete!");
+        completeScreen.SetActive(true);
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void GoToNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
