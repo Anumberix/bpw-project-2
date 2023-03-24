@@ -115,7 +115,15 @@ public class GameManager : MonoBehaviour
     {
         NavMeshPath path = new NavMeshPath();
         //Vector3 target = new Vector3(levelManager.goal.position.x, levelManager.goal.position.y, levelManager.agentPlayer.gameObject.transform.position.z);
-        levelManager.agentPlayer.CalculatePath(levelManager.goal.position, path);
+        if (levelManager.requiresTorch == true)
+        {
+            levelManager.agentPlayer.CalculatePath(levelManager.torch.transform.position, path);
+        }
+        else
+        {
+            levelManager.agentPlayer.CalculatePath(levelManager.goal.position, path);
+        }
+        
         if (path.status == NavMeshPathStatus.PathPartial)
         {
             FailLevel();

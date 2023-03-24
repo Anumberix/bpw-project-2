@@ -13,6 +13,9 @@ public class LevelManager : MonoBehaviour
 
     public Transform goal;
 
+    public bool requiresTorch;
+    public GameObject torch;
+
     Vector3 target;
 
     public int[] bridgeStock;
