@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         //agentShip.updateUpAxis = false;
         //surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
         //surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
-        UpdateBridgeStock();
+        //UpdateBridgeStock();
         DontDestroyOnLoad(canvas);
     }
 

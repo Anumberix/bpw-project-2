@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
         agentShip.updateUpAxis = false;
         surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
         surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
+        GameManager.Instance.UpdateBridgeStock();
     }
 
     // Update is called once per frame
