@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Start Ship Path");
         NavMeshPath path = new NavMeshPath();
         levelManager.agentShip.CalculatePath(levelManager.goal.position, path);
+        Debug.Log(path.status);
         if (path.status == NavMeshPathStatus.PathPartial)
         {
             FailLevel();
@@ -157,6 +158,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextLevel()
     {
+        completeScreen.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

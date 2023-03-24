@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
 
     public Transform goal;
 
-    //Vector3 target;
+    Vector3 target;
 
     public int[] bridgeStock;
 
@@ -32,11 +32,11 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    agentPlayer.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
-        //}
+        if (Input.GetMouseButtonDown(1))
+        {
+            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            agentPlayer.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
+        }
         //Debug.Log(agentPlayer.pathStatus);
     }
 

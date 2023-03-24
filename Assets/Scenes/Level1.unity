@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.1
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.033333335
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -475,7 +475,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 180284877}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1239490773}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GoToNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &180284877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1650,11 +1662,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1933306962835876771, guid: 6b6500a576dcfae4b8950f1180a0d4d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.63
+      value: -0.68
       objectReference: {fileID: 0}
     - target: {fileID: 1933306962835876771, guid: 6b6500a576dcfae4b8950f1180a0d4d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.61
+      value: 6.75
       objectReference: {fileID: 0}
     - target: {fileID: 1933306962835876771, guid: 6b6500a576dcfae4b8950f1180a0d4d1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1712,11 +1724,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866433933141771693, guid: 748a2a279c5a49c4ba442322a7327ee5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.74
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 5866433933141771693, guid: 748a2a279c5a49c4ba442322a7327ee5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.35
+      value: 5.28
       objectReference: {fileID: 0}
     - target: {fileID: 5866433933141771693, guid: 748a2a279c5a49c4ba442322a7327ee5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2554,6 +2566,7 @@ MonoBehaviour:
   levelManager: {fileID: 497039556}
   failureScreen: {fileID: 1037037730}
   completeScreen: {fileID: 1060762662}
+  canvas: {fileID: 420541554}
   bridgeStockText: {fileID: 1368316116}
 --- !u!4 &1239490774
 Transform:
