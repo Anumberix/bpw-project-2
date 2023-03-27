@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         if (Instance != null)
         {
             Destroy(gameObject);
+            Destroy(canvas);
             return;
         }
 
@@ -161,7 +162,9 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        failureScreen.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 
     public void GoToNextLevel()
