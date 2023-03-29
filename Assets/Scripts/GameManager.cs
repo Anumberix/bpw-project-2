@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject completeScreen;
     public GameObject canvas;
 
+    public bool isRunning;
     //public NavMeshAgent agentPlayer;
     //public NavMeshAgent agentShip;
     //public NavMeshSurface surfacePlayer;
@@ -130,6 +131,8 @@ public class GameManager : MonoBehaviour
             FailLevel();
         }
         levelManager.agentPlayer.SetPath(path);
+
+        isRunning = true;
         //Debug.Log(levelManager.agentPlayer.pathStatus);
         //if (levelManager.agentPlayer.pathStatus == NavMeshPathStatus.PathPartial)
         //{
@@ -164,6 +167,7 @@ public class GameManager : MonoBehaviour
     {
         failureScreen.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        isRunning = false;
         
     }
 
@@ -171,5 +175,6 @@ public class GameManager : MonoBehaviour
     {
         completeScreen.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        isRunning = false;
     }
 }

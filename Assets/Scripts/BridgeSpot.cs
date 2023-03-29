@@ -48,6 +48,7 @@ public class BridgeSpot : MonoBehaviour
     private void OnMouseDown()
     {
         GameManager.Instance.SelectBridgeSpot(this);
+        Debug.Log("Jup");
     }
 
     public void setIndicator(bool status)
