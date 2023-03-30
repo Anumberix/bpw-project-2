@@ -21,6 +21,8 @@ public class Destination : MonoBehaviour
         if (collision.gameObject.CompareTag("Character"))
         {
             GameManager.Instance.StartShipPath();
+            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
         }
 
         if (collision.gameObject.CompareTag("Ship"))
