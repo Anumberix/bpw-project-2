@@ -22,6 +22,7 @@ public class Torch : MonoBehaviour
         {
             GameManager.Instance.levelManager.requiresTorch = false;
             GameManager.Instance.StartCharacterPath();
+            Destroy(gameObject);
         }
 
     }

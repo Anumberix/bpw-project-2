@@ -14,7 +14,7 @@ public class WeakBridge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bridgeCollider.enabled = GameManager.Instance.isRunning; // if player pressed go enable collider
+        bridgeCollider.enabled = GameManager.Instance.isCharacterActive; // if player pressed go enable collider
     }
 
     private void OnCollisionExit2D(Collision2D collision)

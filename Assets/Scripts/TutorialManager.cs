@@ -6,20 +6,20 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
-    public enum Phase { Phase1, Phase2, Phase3, Phase4 }
+    public enum Phase { Phase1, Phase2, Phase3, Phase4, Phase5, Phase6, Phase7, Phase8, Phase9 }
     public Phase activePhase;
 
     //private GameObject player;
-    private GameManager gameManager;
+    //private GameManager gameManager;
 
     //public GameObject enemy;
     //public GameObject powerUp;
 
+    public BridgeSpot[] bridgeSpots;
+
     public TextMeshProUGUI[] tutorialText;
 
-    public bool isTutorialActive;
-
-    private bool phaseSetUp;
+    //private bool phaseSetUp;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isTutorialActive)
+        if (GameManager.Instance.isTutorialActive)
         {
             UpdatePhase();
         }
@@ -53,12 +53,31 @@ public class TutorialManager : MonoBehaviour
             case Phase.Phase4:
                 Phase4Behaviour();
                 break;
+            case Phase.Phase5:
+                Phase5Behaviour();
+                break;
+            case Phase.Phase6:
+                Phase6Behaviour();
+                break;
+            case Phase.Phase7:
+                Phase7Behaviour();
+                break;
+            case Phase.Phase8:
+                Phase8Behaviour();
+                break;
+            case Phase.Phase9:
+                Phase9Behaviour();
+                break;
         }
     }
 
     void Phase1Behaviour()
     {
         tutorialText[0].gameObject.SetActive(true);
+        if (Input.GetMouseButtonDown(0))
+        {
+            activePhase = Phase.Phase2;
+        }
         //if (Vector3.Distance(player.transform.position, new Vector3(0, 1, 0)) > 0.1f)
         //{
         //    StartCoroutine(PhaseEndRoutine());
@@ -71,6 +90,10 @@ public class TutorialManager : MonoBehaviour
         tutorialText[0].gameObject.SetActive(false);
         tutorialText[1].gameObject.SetActive(true);
 
+        if (bridgeSpots[0].IsSelected)
+        {
+            activePhase = Phase.Phase3;
+        }
         //if (!phaseSetUp)
         //{
         //    player.transform.position = new Vector3(0, 1, 0);
@@ -91,6 +114,10 @@ public class TutorialManager : MonoBehaviour
         tutorialText[1].gameObject.SetActive(false);
         tutorialText[2].gameObject.SetActive(true);
 
+        if (bridgeSpots[0].ActiveBridge == bridgeSpots[0].bridgeTypes[1])
+        {
+            activePhase = Phase.Phase4;
+        }
         //if (!phaseSetUp)
         //{
         //    player.transform.position = new Vector3(0, 1, 0);
@@ -110,6 +137,21 @@ public class TutorialManager : MonoBehaviour
         tutorialText[2].gameObject.SetActive(false);
         tutorialText[3].gameObject.SetActive(true);
 
+        bool phaseClear = true;
+
+        foreach (BridgeSpot bridgeSpot in bridgeSpots)
+        {
+            if (bridgeSpot.ActiveBridge == bridgeSpot.bridgeTypes[0])
+            {
+                phaseClear = false;
+            }
+        }
+
+        if (phaseClear)
+        {
+            activePhase = Phase.Phase5;
+        }
+        //if (bridgeSpot1.ActiveBridge != bridgeSpot1.bridgeTypes[0])
         //if (!phaseSetUp)
         //{
         //    player.transform.position = new Vector3(0, 1, 0);
@@ -125,11 +167,56 @@ public class TutorialManager : MonoBehaviour
         //}
     }
 
-    IEnumerator PhaseEndRoutine()
+    void Phase5Behaviour()
     {
-        yield return new WaitForSeconds(5);
-        activePhase = Phase.Phase2;
+        tutorialText[3].gameObject.SetActive(false);
+        tutorialText[4].gameObject.SetActive(true);
+
+        if (GameManager.Instance.isCharacterActive)
+        {
+            activePhase = Phase.Phase6;
+        }
     }
+
+    void Phase6Behaviour()
+    {
+        tutorialText[4].gameObject.SetActive(false);
+        tutorialText[5].gameObject.SetActive(true);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            activePhase = Phase.Phase7;
+        }
+    }
+    void Phase7Behaviour()
+    {
+        tutorialText[5].gameObject.SetActive(false);
+        tutorialText[6].gameObject.SetActive(true);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            activePhase = Phase.Phase8;
+            GameManager.Instance.RestartLevel();
+        }
+    }
+
+    void Phase8Behaviour()
+    {
+        tutorialText[6].gameObject.SetActive(false);
+        tutorialText[7].gameObject.SetActive(true);
+    }
+
+    void Phase9Behaviour()
+    {
+        tutorialText[7].gameObject.SetActive(false);
+        GameManager.Instance.isTutorialActive = false;
+    }
+
+    //IEnumerator PhaseEndRoutine()
+    //{
+    //    yield return new WaitForSeconds(5);
+    //    activePhase = Phase.Phase2;
+    //}
 
     //void SpawnEnemies()
     //{

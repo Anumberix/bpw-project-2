@@ -16,8 +16,10 @@ public class GameManager : MonoBehaviour
     public GameObject failureScreen;
     public GameObject completeScreen;
     public GameObject canvas;
+    public GameObject tutorialManager;
 
-    public bool isRunning;
+    public bool isCharacterActive;
+    public bool isTutorialActive;
     //public NavMeshAgent agentPlayer;
     //public NavMeshAgent agentShip;
     //public NavMeshSurface surfacePlayer;
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(canvas);
+            Destroy(tutorialManager);
             return;
         }
 
@@ -52,6 +55,7 @@ public class GameManager : MonoBehaviour
         //surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
         //UpdateBridgeStock();
         DontDestroyOnLoad(canvas);
+        DontDestroyOnLoad(tutorialManager);
     }
 
     private void Update()
@@ -132,7 +136,7 @@ public class GameManager : MonoBehaviour
         }
         levelManager.agentPlayer.SetPath(path);
 
-        isRunning = true;
+        isCharacterActive = true;
         //Debug.Log(levelManager.agentPlayer.pathStatus);
         //if (levelManager.agentPlayer.pathStatus == NavMeshPathStatus.PathPartial)
         //{
@@ -155,19 +159,23 @@ public class GameManager : MonoBehaviour
 
     public void FailLevel()
     {
-        failureScreen.SetActive(true);
+        if (!isTutorialActive)
+        {
+            failureScreen.SetActive(true);
+        }
     }
 
     public void CompleteLevel()
     {
         completeScreen.SetActive(true);
+        tutorialManager.GetComponent<TutorialManager>().activePhase = TutorialManager.Phase.Phase9;
     }
 
     public void RestartLevel()
     {
         failureScreen.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        isRunning = false;
+        isCharacterActive = false;
         
     }
 
@@ -175,6 +183,6 @@ public class GameManager : MonoBehaviour
     {
         completeScreen.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        isRunning = false;
+        isCharacterActive = false;
     }
 }
