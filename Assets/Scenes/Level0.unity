@@ -1216,7 +1216,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 349245420}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 916039536}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: RestartLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &349245420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3165,12 +3177,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ca1b0e163625a4c9a6adc0a118c910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialManager: {fileID: 789237678}
   levelManager: {fileID: 1620496315}
   failureScreen: {fileID: 2004602550}
   completeScreen: {fileID: 1697303505}
   gameCompleteScreen: {fileID: 1039309827}
   canvas: {fileID: 1980075858}
-  tutorialManager: {fileID: 789237678}
   isCharacterActive: 0
   isTutorialActive: 1
   bridgeStockText: {fileID: 769571649}
