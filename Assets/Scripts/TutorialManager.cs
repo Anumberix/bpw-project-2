@@ -17,7 +17,8 @@ public class TutorialManager : MonoBehaviour
 
     public BridgeSpot[] bridgeSpots;
 
-    public TextMeshProUGUI[] tutorialText;
+    public TextMeshProUGUI[] tutorialTexts;
+    public GameObject tutorialText;
 
     //private bool phaseSetUp;
 
@@ -73,7 +74,7 @@ public class TutorialManager : MonoBehaviour
 
     void Phase1Behaviour()
     {
-        tutorialText[0].gameObject.SetActive(true);
+        tutorialTexts[0].gameObject.SetActive(true);
         if (Input.GetMouseButtonDown(0))
         {
             activePhase = Phase.Phase2;
@@ -87,8 +88,8 @@ public class TutorialManager : MonoBehaviour
 
     void Phase2Behaviour()
     {
-        tutorialText[0].gameObject.SetActive(false);
-        tutorialText[1].gameObject.SetActive(true);
+        tutorialTexts[0].gameObject.SetActive(false);
+        tutorialTexts[1].gameObject.SetActive(true);
 
         if (bridgeSpots[0].IsSelected)
         {
@@ -111,8 +112,8 @@ public class TutorialManager : MonoBehaviour
 
     void Phase3Behaviour()
     {
-        tutorialText[1].gameObject.SetActive(false);
-        tutorialText[2].gameObject.SetActive(true);
+        tutorialTexts[1].gameObject.SetActive(false);
+        tutorialTexts[2].gameObject.SetActive(true);
 
         if (bridgeSpots[0].ActiveBridge == bridgeSpots[0].bridgeTypes[1])
         {
@@ -134,8 +135,8 @@ public class TutorialManager : MonoBehaviour
 
     void Phase4Behaviour()
     {
-        tutorialText[2].gameObject.SetActive(false);
-        tutorialText[3].gameObject.SetActive(true);
+        tutorialTexts[2].gameObject.SetActive(false);
+        tutorialTexts[3].gameObject.SetActive(true);
 
         bool phaseClear = true;
 
@@ -169,8 +170,8 @@ public class TutorialManager : MonoBehaviour
 
     void Phase5Behaviour()
     {
-        tutorialText[3].gameObject.SetActive(false);
-        tutorialText[4].gameObject.SetActive(true);
+        tutorialTexts[3].gameObject.SetActive(false);
+        tutorialTexts[4].gameObject.SetActive(true);
 
         if (GameManager.Instance.isCharacterActive)
         {
@@ -180,8 +181,8 @@ public class TutorialManager : MonoBehaviour
 
     void Phase6Behaviour()
     {
-        tutorialText[4].gameObject.SetActive(false);
-        tutorialText[5].gameObject.SetActive(true);
+        tutorialTexts[4].gameObject.SetActive(false);
+        tutorialTexts[5].gameObject.SetActive(true);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -190,8 +191,8 @@ public class TutorialManager : MonoBehaviour
     }
     void Phase7Behaviour()
     {
-        tutorialText[5].gameObject.SetActive(false);
-        tutorialText[6].gameObject.SetActive(true);
+        tutorialTexts[5].gameObject.SetActive(false);
+        tutorialTexts[6].gameObject.SetActive(true);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -202,13 +203,14 @@ public class TutorialManager : MonoBehaviour
 
     void Phase8Behaviour()
     {
-        tutorialText[6].gameObject.SetActive(false);
-        tutorialText[7].gameObject.SetActive(true);
+        tutorialTexts[6].gameObject.SetActive(false);
+        tutorialTexts[7].gameObject.SetActive(true);
     }
 
     void Phase9Behaviour()
     {
-        tutorialText[7].gameObject.SetActive(false);
+        tutorialTexts[7].gameObject.SetActive(false);
+        tutorialText.gameObject.SetActive(false);
         GameManager.Instance.isTutorialActive = false;
     }
 

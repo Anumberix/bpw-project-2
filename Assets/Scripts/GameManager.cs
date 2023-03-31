@@ -15,8 +15,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject failureScreen;
     public GameObject completeScreen;
+    public GameObject gameCompleteScreen;
     public GameObject canvas;
-    public GameObject tutorialManager;
+    public TutorialManager tutorialManager;
 
     public bool isCharacterActive;
     public bool isTutorialActive;
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(canvas);
-            Destroy(tutorialManager);
+            Destroy(tutorialManager.gameObject);
             return;
         }
 
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
         //surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
         //UpdateBridgeStock();
         DontDestroyOnLoad(canvas);
-        DontDestroyOnLoad(tutorialManager);
+        DontDestroyOnLoad(tutorialManager.gameObject);
     }
 
     private void Update()
@@ -109,16 +110,20 @@ public class GameManager : MonoBehaviour
     public void UpdateBridgeStock(int index, int change)
     {
         levelManager.bridgeStock[index] += change;
-        bridgeStockText.text = "Solid bridges: " + levelManager.bridgeStock[1] + "\nWeak bridges: " + levelManager.bridgeStock[2];
+        bridgeStockText.text = levelManager.bridgeStock[1] + "\n" + levelManager.bridgeStock[2];
     }
 
     public void UpdateBridgeStock()
     {
-    bridgeStockText.text = "Solid bridges: " + levelManager.bridgeStock[1] + "\nWeak bridges: " + levelManager.bridgeStock[2];
+    bridgeStockText.text = levelManager.bridgeStock[1] + "\n" + levelManager.bridgeStock[2];
     }
 
     public void StartCharacterPath()
     {
+        if (tutorialManager.activePhase == TutorialManager.Phase.Phase1 || tutorialManager.activePhase == TutorialManager.Phase.Phase2)
+        {
+            return;
+        }
         NavMeshPath path = new NavMeshPath();
         //Vector3 target = new Vector3(levelManager.goal.position.x, levelManager.goal.position.y, levelManager.agentPlayer.gameObject.transform.position.z);
         if (levelManager.requiresTorch == true)
@@ -167,8 +172,16 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLevel()
     {
-        completeScreen.SetActive(true);
-        tutorialManager.GetComponent<TutorialManager>().activePhase = TutorialManager.Phase.Phase9;
+        tutorialManager.activePhase = TutorialManager.Phase.Phase9;
+        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings - 2)
+        {
+            completeScreen.SetActive(true);
+        }
+        else
+        {
+            gameCompleteScreen.SetActive(true);
+        }
+        
     }
 
     public void RestartLevel()
@@ -184,5 +197,11 @@ public class GameManager : MonoBehaviour
         completeScreen.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         isCharacterActive = false;
+    }
+
+    public void GotoEndScreen()
+    {
+        Destroy(canvas);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

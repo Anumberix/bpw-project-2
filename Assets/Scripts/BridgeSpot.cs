@@ -28,7 +28,8 @@ public class BridgeSpot : MonoBehaviour
     public GameObject[] bridgeTypes;
 
     [SerializeField] private bool isSelected = false;
-    [SerializeField] public bool IsSelected
+    [SerializeField]
+    public bool IsSelected
     {
         get { return isSelected; }
         set
@@ -47,7 +48,10 @@ public class BridgeSpot : MonoBehaviour
 
     private void OnMouseDown()
     {
-        GameManager.Instance.SelectBridgeSpot(this);
+        if (GameManager.Instance.tutorialManager.activePhase != TutorialManager.Phase.Phase1)
+        {
+            GameManager.Instance.SelectBridgeSpot(this);
+        }
     }
 
     public void setIndicator(bool status)
