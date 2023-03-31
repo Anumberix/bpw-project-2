@@ -10,27 +10,19 @@ using NavMeshPlus.Components;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private BridgeSpot currentSpot;
+    public TutorialManager tutorialManager;
     public LevelManager levelManager;
+    private BridgeSpot currentSpot;
 
     public GameObject failureScreen;
     public GameObject completeScreen;
     public GameObject gameCompleteScreen;
     public GameObject canvas;
-    public TutorialManager tutorialManager;
 
     public bool isCharacterActive;
     public bool isTutorialActive;
-    //public NavMeshAgent agentPlayer;
-    //public NavMeshAgent agentShip;
-    //public NavMeshSurface surfacePlayer;
-    //public NavMeshSurface surfaceShip;
-
-    //private Vector3 target;
 
     public TextMeshProUGUI bridgeStockText;
-
-    //public int[] bridgeStock;
 
     private void Awake()
     {
@@ -48,25 +40,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //agentPlayer.updateRotation = false;
-        //agentPlayer.updateUpAxis = false;
-        //agentShip.updateRotation = false;
-        //agentShip.updateUpAxis = false;
-        //surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
-        //surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);
-        //UpdateBridgeStock();
         DontDestroyOnLoad(canvas);
         DontDestroyOnLoad(tutorialManager.gameObject);
-    }
-
-    private void Update()
-    {
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    agentPlayer.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
-        //}
-        //Debug.Log(agentPlayer.pathStatus);
     }
 
     public void SelectBridgeSpot(BridgeSpot spot)
@@ -91,9 +66,7 @@ public class GameManager : MonoBehaviour
                 currentSpot.ActiveBridge = currentSpot.bridgeTypes[bridgeType];
                 currentSpot.IsSelected = false;
                 currentSpot = null;
-                levelManager.UpdateNavMesh();
-                //surfacePlayer.UpdateNavMesh(surfacePlayer.navMeshData);
-                //surfaceShip.UpdateNavMesh(surfaceShip.navMeshData);                
+                levelManager.UpdateNavMesh();             
             }
             else
             {
@@ -125,7 +98,6 @@ public class GameManager : MonoBehaviour
             return;
         }
         NavMeshPath path = new NavMeshPath();
-        //Vector3 target = new Vector3(levelManager.goal.position.x, levelManager.goal.position.y, levelManager.agentPlayer.gameObject.transform.position.z);
         if (levelManager.requiresTorch == true)
         {
             levelManager.agentPlayer.CalculatePath(levelManager.torch.transform.position, path);
@@ -142,11 +114,6 @@ public class GameManager : MonoBehaviour
         levelManager.agentPlayer.SetPath(path);
 
         isCharacterActive = true;
-        //Debug.Log(levelManager.agentPlayer.pathStatus);
-        //if (levelManager.agentPlayer.pathStatus == NavMeshPathStatus.PathPartial)
-        //{
-        //    Debug.Log("Character cannot reach destination");
-        //}
     }
 
     public void StartShipPath()

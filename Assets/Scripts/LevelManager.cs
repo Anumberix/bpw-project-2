@@ -41,7 +41,6 @@ public class LevelManager : MonoBehaviour
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             agentPlayer.SetDestination(new Vector3(target.x, target.y, agentPlayer.gameObject.transform.position.z));
         }
-        //Debug.Log(agentPlayer.pathStatus);
     }
 
     public void UpdateNavMesh()

@@ -8,26 +8,10 @@ public class TutorialManager : MonoBehaviour
 {
     public enum Phase { Phase1, Phase2, Phase3, Phase4, Phase5, Phase6, Phase7, Phase8, Phase9 }
     public Phase activePhase;
-
-    //private GameObject player;
-    //private GameManager gameManager;
-
-    //public GameObject enemy;
-    //public GameObject powerUp;
-
     public BridgeSpot[] bridgeSpots;
 
     public TextMeshProUGUI[] tutorialTexts;
     public GameObject tutorialText;
-
-    //private bool phaseSetUp;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //player = GameObject.Find("Player");
-        //gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -79,10 +63,6 @@ public class TutorialManager : MonoBehaviour
         {
             activePhase = Phase.Phase2;
         }
-        //if (Vector3.Distance(player.transform.position, new Vector3(0, 1, 0)) > 0.1f)
-        //{
-        //    StartCoroutine(PhaseEndRoutine());
-        //}
 
     }
 
@@ -94,20 +74,7 @@ public class TutorialManager : MonoBehaviour
         if (bridgeSpots[0].IsSelected)
         {
             activePhase = Phase.Phase3;
-        }
-        //if (!phaseSetUp)
-        //{
-        //    player.transform.position = new Vector3(0, 1, 0);
-        //    SpawnEnemies();
-        //    phaseSetUp = true;
-        //}
-
-        //if (GameObject.FindWithTag("Enemy") == null)
-        //{
-        //    activePhase = Phase.Phase3;
-        //    phaseSetUp = false;
-        //}
-
+        }        
     }
 
     void Phase3Behaviour()
@@ -119,18 +86,6 @@ public class TutorialManager : MonoBehaviour
         {
             activePhase = Phase.Phase4;
         }
-        //if (!phaseSetUp)
-        //{
-        //    player.transform.position = new Vector3(0, 1, 0);
-        //    SpawnEnemies();
-        //    phaseSetUp = true;
-        //}
-
-        //if (GameObject.FindWithTag("Enemy") == null)
-        //{
-        //    activePhase = Phase.Phase4;
-        //    phaseSetUp = false;
-        //}
     }
 
     void Phase4Behaviour()
@@ -152,20 +107,6 @@ public class TutorialManager : MonoBehaviour
         {
             activePhase = Phase.Phase5;
         }
-        //if (bridgeSpot1.ActiveBridge != bridgeSpot1.bridgeTypes[0])
-        //if (!phaseSetUp)
-        //{
-        //    player.transform.position = new Vector3(0, 1, 0);
-        //    SpawnEnemies();
-        //    Instantiate(powerUp, new Vector3(0, 1, 2.5f), powerUp.transform.rotation);
-        //    phaseSetUp = true;
-        //}
-
-        //if (GameObject.FindWithTag("Enemy") == null)
-        //{
-        //    gameManager.TutorialCompleted();
-        //    tutorialText[3].gameObject.SetActive(false);
-        //}
     }
 
     void Phase5Behaviour()
@@ -213,37 +154,4 @@ public class TutorialManager : MonoBehaviour
         tutorialText.gameObject.SetActive(false);
         GameManager.Instance.isTutorialActive = false;
     }
-
-    //IEnumerator PhaseEndRoutine()
-    //{
-    //    yield return new WaitForSeconds(5);
-    //    activePhase = Phase.Phase2;
-    //}
-
-    //void SpawnEnemies()
-    //{
-    //    if (activePhase == Phase.Phase2)
-    //    {
-    //        Instantiate(enemy, new Vector3(12, 1, 0), enemy.transform.rotation);
-    //        Instantiate(enemy, new Vector3(-12, 1, 0), enemy.transform.rotation);
-    //        Instantiate(enemy, new Vector3(0, 1, 12), enemy.transform.rotation);
-    //        Instantiate(enemy, new Vector3(0, 1, -12), enemy.transform.rotation);
-    //    }
-
-    //    if (activePhase == Phase.Phase3 || activePhase == Phase.Phase4)
-    //    {
-    //        for (int i = 0; i < 7; i++)
-    //        {
-    //            Instantiate(enemy, new Vector3(0, 1, 5 + i), enemy.transform.rotation);
-    //        }
-    //    }
-
-    //    Enemy[] enemies = FindObjectsOfType<Enemy>();
-
-    //    foreach (Enemy enemy in enemies)
-    //    {
-    //        enemy.speed = 0;
-    //        enemy.enemyAnim.SetTrigger("gameOver"); // gameOver trigger sets enemy animation to Idle
-    //    }
-    //}
 }
